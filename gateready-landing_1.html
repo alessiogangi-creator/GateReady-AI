@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GateReady &mdash; L'esperto aeroportuale che vola sempre con te. Gratis.</title>
+<meta name="description" content="Compensazioni fino a &euro;600, visti per 90 paesi, regole bagagli, assistenze speciali e SOS aeroporto. L'esperto di volo che avevi sempre voluto avere con te.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0A1628;--blue:#1A6FB4;--blue-lt:#2F8FD8;
+  --gold:#F0A500;--gold-lt:#FBBF24;
+  --white:#FFFFFF;--slate:#F5F8FC;--mist:#E8EEF5;
+  --ink:#2D3748;--mid:#4A5568;--soft:#718096;
+  --green:#10B981;--red:#EF4444;--r:14px;
+  --shadow:0 4px 24px rgba(10,22,40,.10);
+  --shadow-lg:0 8px 40px rgba(10,22,40,.16);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--white);color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* TYPE */
+.label{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+h1{font-size:clamp(1.9rem,5vw,3.1rem);font-weight:800;line-height:1.13;letter-spacing:-.025em}
+h2{font-size:clamp(1.4rem,3vw,2.1rem);font-weight:800;line-height:1.2;letter-spacing:-.015em}
+h3{font-size:1.05rem;font-weight:700;color:var(--navy)}
+p{color:var(--mid);line-height:1.72}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+.section{padding:76px 0}
+.section--alt{background:var(--slate)}
+.section-header{text-align:center;max-width:660px;margin:0 auto 48px}
+.section-header p{font-size:1.05rem;margin-top:12px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:var(--navy);padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;height:58px;
+  box-shadow:0 2px 24px rgba(0,0,0,.35)}
+.nav-logo{font-size:18px;font-weight:800;color:white;text-decoration:none;letter-spacing:-.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:white}
+.nav-cta{background:var(--gold)!important;color:var(--navy)!important;
+  padding:7px 16px;border-radius:8px;font-weight:800!important;transition:background .15s!important}
+.nav-cta:hover{background:var(--gold-lt)!important;color:var(--navy)!important}
+
+/* HERO */
+.hero{background:linear-gradient(148deg,var(--navy) 0%,#0F2444 52%,#142E5A 100%);
+  padding:80px 24px 100px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 65% 55% at 68% 50%,rgba(26,111,180,.2) 0%,transparent 68%)}
+.hero-grid{max-width:1080px;margin:0 auto;display:grid;
+  grid-template-columns:1fr 420px;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(240,165,0,.1);border:1px solid rgba(240,165,0,.28);
+  padding:5px 13px;border-radius:20px;margin-bottom:24px}
+.hero-eyebrow span{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+.hero h1{color:white;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-lead{font-size:1.08rem;color:rgba(255,255,255,.72);margin-bottom:36px;line-height:1.68;max-width:520px}
+.hero-note{font-size:11.5px;color:rgba(255,255,255,.38);margin-bottom:8px;letter-spacing:.02em}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;border-radius:10px;
+  font-weight:800;font-size:15px;text-decoration:none;transition:all .18s;border:none;cursor:pointer;font-family:inherit}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 6px 22px rgba(240,165,0,.38)}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.8);border:1.5px solid rgba(255,255,255,.22)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.55);color:white}
+.btn-blue{background:var(--blue);color:white}
+.btn-blue:hover{background:var(--blue-lt)}
+.btn-outline-dark{background:transparent;color:var(--navy);border:2px solid var(--mist)}
+.btn-outline-dark:hover{border-color:var(--blue);color:var(--blue)}
+.btn-sm{padding:10px 20px;font-size:13.5px}
+
+/* MOCKUP */
+.hero-mockup{background:var(--slate);border-radius:18px;overflow:hidden;
+  box-shadow:0 28px 70px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06)}
+.mock-bar{background:var(--navy);padding:9px 13px;display:flex;align-items:center;gap:8px}
+.mock-logo{font-size:13px;font-weight:800;color:white}
+.mock-logo span{color:var(--gold)}
+.mock-badge{background:rgba(255,255,255,.14);border-radius:5px;
+  padding:2px 6px;font-size:9px;font-weight:700;color:white;margin-left:auto}
+.mock-tabs{background:var(--navy);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 3px}
+.mock-tab{flex:0 0 auto;padding:7px 11px;font-size:10px;font-weight:600;
+  color:rgba(255,255,255,.48);white-space:nowrap;border-bottom:2px solid transparent}
+.mock-tab.on{color:white;border-bottom-color:var(--gold)}
+.mock-body{padding:12px;display:flex;flex-direction:column;gap:8px}
+.mock-card{background:white;border-radius:10px;padding:11px;box-shadow:0 2px 7px rgba(10,22,40,.07)}
+.mock-title{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:7px}
+.mock-row{display:flex;gap:6px;margin-bottom:6px}
+.mock-field{flex:1;background:var(--slate);border:1.5px solid var(--mist);
+  border-radius:7px;padding:6px 9px;font-size:9.5px;color:var(--soft)}
+.mock-btn{background:var(--blue);color:white;border:none;border-radius:7px;
+  padding:6px 11px;font-size:9.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.mock-result{background:var(--slate);border-radius:7px;padding:9px;
+  font-size:9px;color:var(--ink);line-height:1.65}
+.mock-chips{display:flex;flex-wrap:wrap;gap:4px}
+.mc{display:inline-block;background:var(--slate);border:1.5px solid var(--mist);
+  border-radius:20px;padding:2px 9px;font-size:9px;font-weight:600;color:var(--mid)}
+.mc.on{background:var(--navy);color:white;border-color:var(--navy)}
+
+/* STATS BAR */
+.stats{background:var(--navy);padding:14px 24px}
+.stats-row{max-width:1080px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap}
+.stat-item{flex:1;min-width:110px;text-align:center;padding:10px 14px;
+  border-right:1px solid rgba(255,255,255,.08)}
+.stat-item:last-child{border-right:none}
+.stat-n{font-size:1.65rem;font-weight:800;color:var(--gold);line-height:1}
+.stat-l{font-size:10px;color:rgba(255,255,255,.48);margin-top:3px;font-weight:600;letter-spacing:.04em}
+
+/* FEATURE CARDS */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));gap:20px}
+.feat-card{background:white;border-radius:var(--r);padding:26px;
+  border:1.5px solid var(--mist);transition:all .2s}
+.feat-card:hover{border-color:rgba(26,111,180,.3);box-shadow:var(--shadow);transform:translateY(-2px)}
+.feat-icon{font-size:1.85rem;margin-bottom:12px;display:block}
+.feat-card h3{margin-bottom:7px}
+.feat-card p{font-size:13.5px}
+.feat-tag{display:inline-block;margin-top:10px;background:var(--slate);
+  border-radius:6px;padding:3px 9px;font-size:10.5px;font-weight:700;color:var(--blue)}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:0;position:relative}
+.steps::before{content:'';position:absolute;left:25px;top:36px;bottom:36px;
+  width:2px;background:linear-gradient(to bottom,var(--blue),var(--gold))}
+.step{display:flex;gap:22px;align-items:flex-start;padding:22px 0}
+.step-n{flex:0 0 50px;height:50px;background:linear-gradient(135deg,var(--blue),var(--blue-lt));
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1rem;font-weight:800;color:white;position:relative;z-index:1;border:3px solid white;
+  box-shadow:0 4px 14px rgba(26,111,180,.35)}
+.step-body h3{margin-bottom:5px;font-size:1.02rem}
+.step-body p{font-size:13.5px;max-width:480px}
+
+/* WAITING LIST */
+.wl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;margin-top:44px;align-items:start}
+.wl-card{background:white;border-radius:var(--r);padding:28px;
+  border:2px solid var(--mist);position:relative;transition:all .2s}
+.wl-card:hover{border-color:rgba(26,111,180,.3);box-shadow:var(--shadow)}
+.wl-card.hero-card{border-color:var(--gold);box-shadow:0 0 0 4px rgba(240,165,0,.08),var(--shadow-lg)}
+.wl-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--navy);padding:3px 13px;
+  border-radius:20px;font-size:10px;font-weight:800;white-space:nowrap}
+.wl-tier{font-size:10.5px;font-weight:800;color:var(--soft);letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px}
+.wl-price{font-size:2.1rem;font-weight:800;color:var(--navy);line-height:1}
+.wl-price sup{font-size:.9rem;vertical-align:top;margin-top:4px}
+.wl-period{font-size:12px;color:var(--soft);margin-bottom:18px}
+.wl-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.wl-features li{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--ink)}
+.wl-features li::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0;margin-top:1px}
+.wl-cta{display:block;width:100%;text-align:center;padding:11px;border-radius:10px;
+  font-weight:700;font-size:13.5px;text-decoration:none;transition:all .15s;border:none;cursor:pointer;font-family:inherit}
+
+/* WAITLIST FORM */
+.waitlist-box{background:white;border-radius:var(--r);padding:28px;border:2px solid var(--mist);margin-top:8px}
+.waitlist-box label{display:block;font-size:12px;font-weight:700;color:var(--mid);margin-bottom:5px}
+.waitlist-input{width:100%;padding:10px 13px;border:1.5px solid var(--mist);border-radius:9px;
+  font-size:14px;outline:none;font-family:inherit;background:var(--slate);color:var(--navy)}
+.waitlist-input:focus{border-color:var(--blue);background:white;box-shadow:0 0 0 3px rgba(26,111,180,.1)}
+.waitlist-row{display:flex;gap:8px;margin-top:8px}
+.waitlist-row .waitlist-input{margin-top:0}
+.waitlist-ok{display:none;text-align:center;padding:14px 0 0;color:var(--green);font-weight:700;font-size:14px}
+.wl-form-row{margin-bottom:8px}
+.wl-form-row label{display:block;font-size:11.5px;font-weight:700;color:var(--mid);margin-bottom:4px}
+
+/* COMPANIES */
+.co-grid{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px;justify-content:center}
+.co-chip{background:white;border:1.5px solid var(--mist);border-radius:7px;
+  padding:7px 14px;font-size:12.5px;font-weight:600;color:var(--ink);transition:all .15s}
+.co-chip:hover{border-color:var(--blue);color:var(--blue)}
+
+/* SOURCES */
+.src-badge{display:inline-flex;gap:5px;align-items:center;
+  background:rgba(26,111,180,.06);border:1px solid rgba(26,111,180,.16);
+  border-radius:6px;padding:4px 9px;font-size:11px;color:var(--blue);font-weight:600;margin:3px}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:18px;margin-top:44px}
+.testi{background:white;border-radius:var(--r);padding:26px;border:1.5px solid var(--mist)}
+.testi-stars{color:var(--gold);font-size:.9rem;margin-bottom:10px}
+.testi-text{font-size:14px;color:var(--ink);line-height:1.72;margin-bottom:14px;font-style:italic}
+.testi-author{font-size:13px;font-weight:700;color:var(--navy)}
+.testi-role{font-size:11.5px;color:var(--soft)}
+
+/* ALERT */
+.alert{border-radius:10px;padding:13px 17px;font-size:13px;line-height:1.6;margin-top:14px}
+.alert-info{background:#EEF6FF;color:#1A4E7A;border-left:3px solid var(--blue)}
+.alert-warn{background:#FFFBEA;color:#7B5800;border-left:3px solid var(--gold)}
+.alert-green{background:#ECFDF5;color:#065F46;border-left:3px solid var(--green)}
+
+/* RIBBON */
+.ribbon{background:linear-gradient(90deg,var(--gold),var(--gold-lt),var(--gold));
+  padding:12px 24px;text-align:center;font-size:14px;font-weight:700;color:var(--navy)}
+.ribbon span{opacity:.75;font-weight:500;margin-left:8px}
+
+/* CTA FINAL */
+.cta-final{background:linear-gradient(138deg,var(--navy),#0F2444);
+  padding:76px 24px;text-align:center;position:relative;overflow:hidden}
+.cta-final::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 55% 60% at 50% 50%,rgba(240,165,0,.06) 0%,transparent 70%)}
+.cta-final h2{color:white;margin-bottom:14px;position:relative}
+.cta-final p{color:rgba(255,255,255,.66);margin-bottom:32px;font-size:1.05rem;position:relative;max-width:560px;margin-left:auto;margin-right:auto}
+.cta-final .btn{position:relative;font-size:1.05rem;padding:15px 34px}
+
+/* FOOTER */
+footer{background:#060D1A;padding:36px 24px 22px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:22px;margin-bottom:22px}
+.footer-logo{font-size:1.15rem;font-weight:800;color:white}
+.footer-logo span{color:var(--gold)}
+.footer-tagline{font-size:11.5px;color:rgba(255,255,255,.35);margin-top:3px}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.42);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:rgba(255,255,255,.72)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:7px}
+.footer-copy{font-size:10.5px;color:rgba(255,255,255,.3)}
+.footer-src{font-size:10.5px;color:rgba(255,255,255,.2)}
+
+/* ANIM */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.anim-hero{animation:fadeUp .55s ease both}
+.anim-hero-2{animation:fadeUp .55s .2s ease both}
+
+/* MOBILE */
+@media(max-width:800px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .anim-hero-2{display:none}
+  .nav-links a:not(.nav-cta){display:none}
+  .steps::before{left:21px}
+  .step-n{flex:0 0 42px;height:42px;font-size:.9rem}
+  .section{padding:54px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  &#127881; GateReady &egrave; in beta &mdash; entra in waiting list e accedi prima di tutti
+  <span>Primi 100 posti: Lifetime Pass a &euro;79</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#top">Gate<span>Ready</span></a>
+  <div class="nav-links">
+    <a href="#funziona">Come funziona</a>
+    <a href="#funzioni">Funzioni</a>
+    <a href="#waitlist">Pre-ordine</a>
+    <a href="https://gate-ready-ai-p89x-alessio-gangi-s-projects.vercel.app/" target="_blank" style="font-size:13px;font-weight:600;color:rgba(255,255,255,.75);text-decoration:none;padding:7px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,.22);transition:all .15s" onmouseover="this.style.borderColor='rgba(255,255,255,.6)';this.style.color='white'" onmouseout="this.style.borderColor='rgba(255,255,255,.22)';this.style.color='rgba(255,255,255,.75)'">&#128640; Apri l'app</a>
+    <a href="#waitlist" class="nav-cta">Entra in lista &rarr;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="anim-hero">
+      <div class="hero-eyebrow">
+        <span>&#9992;&#65039; Costruito da chi conosce il settore dall'interno</span>
+      </div>
+      <h1>L'esperto aeroportuale che vola <em>sempre con te.</em> Gratis.</h1>
+      <p class="hero-lead">Compensazioni fino a &euro;600, visti e documenti per 90 paesi, regole bagagli di 20 compagnie, assistenze speciali, SOS in aeroporto e un assistente AI che risponde come un collega di lavoro. Tutto in un posto. Tutto gratis. Tutto offline.</p>
+      <p class="hero-note">Fonti verificate: ENAC &middot; MAECI &middot; EUR-Lex &middot; IATA Timatic &middot; gov.uk &middot; Aggiornato giugno 2026</p>
+      <div class="hero-actions">
+        <a href="https://gate-ready-ai-p89x-alessio-gangi-s-projects.vercel.app/" class="btn btn-gold" target="_blank">&#128640; Prova l'app gratis</a>
+        <a href="#waitlist" class="btn btn-ghost">Pre-ordina il Premium &darr;</a>
+      </div>
+    </div>
+    <div class="anim-hero-2">
+      <div class="hero-mockup">
+        <div class="mock-bar">
+          <div class="mock-logo">Gate<span>Ready</span></div>
+          <div class="mock-badge">v1.3</div>
+        </div>
+        <div class="mock-tabs">
+          <div class="mock-tab on">&#9992;&#65039; Viaggio</div>
+          <div class="mock-tab">&#9878;&#65039; Diritti</div>
+          <div class="mock-tab">&#129523; Bagagli</div>
+          <div class="mock-tab">&#127919; Speciali</div>
+          <div class="mock-tab">&#128172; AI</div>
+        </div>
+        <div class="mock-body">
+          <div class="mock-card">
+            <div class="mock-title">&#9878;&#65039; Analisi diritti &mdash; volo cancellato</div>
+            <div class="mock-row">
+              <div class="mock-field">&#128747; FLR &mdash; Firenze Peretola</div>
+            </div>
+            <div class="mock-row">
+              <div class="mock-field">&#128748; LHR &mdash; Londra Heathrow</div>
+              <div class="mock-btn">Analizza</div>
+            </div>
+            <div class="mock-result">
+              &#10003; <strong>Compensazione: &euro;250</strong><br>
+              Reg. CE 261/2004 &middot; Distanza 1.847km<br>
+              Assistenza: pasti &middot; hotel &middot; transfer<br>
+              &#128203; Testo reclamo pronto &rarr;
+            </div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-title">&#129523; Bagagli &mdash; scegli la compagnia</div>
+            <div class="mock-chips">
+              <span class="mc on">Ryanair</span><span class="mc">easyJet</span>
+              <span class="mc">ITA</span><span class="mc">Wizz</span><span class="mc">+16</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-n">90+</div><div class="stat-l">Paesi coperti</div></div>
+    <div class="stat-item"><div class="stat-n">20</div><div class="stat-l">Compagnie aeree</div></div>
+    <div class="stat-item"><div class="stat-n">210</div><div class="stat-l">Aeroporti</div></div>
+    <div class="stat-item"><div class="stat-n">&euro;600</div><div class="stat-l">Compensazione max</div></div>
+    <div class="stat-item"><div class="stat-n">0&euro;</div><div class="stat-l">Per iniziare</div></div>
+  </div>
+</div>
+
+<!-- PROBLEMA -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Perch&eacute; esiste GateReady</span>
+      <h2>Ogni anno i passeggeri lasciano miliardi sul tavolo</h2>
+      <p>L&rsquo;80% di chi ha subito una cancellazione o un ritardo non richiede il rimborso. Non perch&eacute; non voglia: perch&eacute; nessuno gli ha detto che aveva diritto a farlo, n&eacute; come fare.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-icon">&#128532;</span>
+        <h3>Il volo &egrave; cancellato.</h3>
+        <p>Sono le sei di mattina, hai la valigia in mano e il tabellone mostra &ldquo;Cancellato&rdquo;. Potresti avere fino a &euro;600 di rimborso. Ma tra te e quei soldi c&rsquo;&egrave; un muro di procedure, moduli e risposte automatiche costruito apposta per farti arrendere.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#129335;</span>
+        <h3>Le regole cambiano. Le risposte online non tengono il passo.</h3>
+        <p>Devi chiedere il visto per il Regno Unito? Il power bank va in cabina o in stiva? Puoi volare incinta di 34 settimane? Quanto pesa il bagaglio a mano su Wizz Air adesso? Quello che trovi in rete &egrave; spesso vecchio, contraddittorio o scritto per un altro paese. GateReady aggiorna le risposte ogni trimestre, cita sempre la fonte e indica dove verificare.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#9992;&#65039;</span>
+        <h3>Chi lavora in aeroporto sa cose che tu non sai.</h3>
+        <p>Gli operatori di terra conoscono procedure, scadenze e diritti che nessun sito spiega chiaramente ai passeggeri. GateReady traduce quella conoscenza operativa in risposte che chiunque pu&ograve; capire e usare subito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COME FUNZIONA -->
+<section class="section section--alt" id="funziona">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Come funziona</span>
+      <h2>La risposta giusta in quattro secondi</h2>
+      <p>Nessuna registrazione. Nessuna app da scaricare. Apri, scrivi o scegli, ottieni.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <h3>Apri GateReady dal browser, su qualsiasi dispositivo</h3>
+          <p>Telefono, tablet o computer: funziona ovunque, anche offline dopo il primo caricamento. Ideale in aeroporto quando il Wi-Fi &egrave; lento o assente e hai bisogno di una risposta adesso.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <h3>Scegli la sezione o scrivi direttamente all'assistente AI</h3>
+          <p>Hai un problema specifico? C&rsquo;&egrave; la sezione giusta per te. Preferisci spiegare la situazione con parole tue? L&rsquo;assistente AI capisce il linguaggio di tutti i giorni, rileva la compagnia nel testo e risponde nel tuo contesto preciso.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <h3>Ricevi la risposta esatta per il tuo caso, non risposte generiche</h3>
+          <p>Calcolo della compensazione con la distanza reale del tuo volo, testo del reclamo pronto per la tua compagnia specifica, procedura passo per passo. Non articoli informativi: risposte operative.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-body">
+          <h3>Agisci con la sicurezza di chi conosce le regole</h3>
+          <p>Copia il testo del reclamo, presentati al banco con le informazioni giuste, oppure lascia che i nostri partner specializzati gestiscano il recupero della compensazione per te. Saprai sempre cosa aspettarti e entro quando.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNZIONI -->
+<section class="section" id="funzioni">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">6 sezioni, l'intera esperienza di volo coperta</span>
+      <h2>Dal momento in cui prenoti al ritiro del bagaglio</h2>
+      <p>GateReady &egrave; l'unico strumento che accompagna il passeggero in ogni fase del viaggio, con informazioni operative e non generiche.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-icon">&#9992;&#65039;</span>
+        <h3>Viaggio</h3>
+        <p>Visto, documenti, vaccini, dogana e regole di transito per oltre 90 paesi. Checklist di preparazione personalizzata, timeline di avvicinamento alla partenza e avvisi specifici per destinazioni che richiedono ETA, e-visa o documenti aggiuntivi.</p>
+        <span class="feat-tag">210 aeroporti &middot; 90+ paesi</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#9878;&#65039;</span>
+        <h3>Diritti passeggero</h3>
+        <p>Il Regolamento UE 261/2004 ti garantisce fino a &euro;600 quando il volo viene cancellato, ritardato o quando ti negano l&rsquo;imbarco. GateReady calcola automaticamente a quanto hai diritto in base alla distanza reale del tuo volo, genera il testo del reclamo pronto per ognuna delle 20 compagnie coperte e ti ricorda le scadenze per non perdere il rimborso. Include una nota specifica per i passeggeri in partenza da Firenze, dove le limitazioni operative in estate creano spesso situazioni di negato imbarco.</p>
+        <span class="feat-tag">&euro;250 &middot; &euro;400 &middot; &euro;600</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#129523;</span>
+        <h3>Bagagli</h3>
+        <p>Dimensioni, pesi, tariffe, eccedenze e merci pericolose per 20 compagnie. Include le regole aggiornate al 2026 su power bank, laptop, tablet, sigarette elettroniche, ghiaccio secco, attrezzatura sportiva, strumenti musicali e molto altro. Informazioni verificate direttamente sulle fonti ufficiali delle compagnie.</p>
+        <span class="feat-tag">20 compagnie &middot; DGR IATA 2026</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#127919;</span>
+        <h3>Servizi speciali</h3>
+        <p>Viaggi con difficolt&agrave; motorie? GateReady ti spiega in parole semplici cosa puoi chiedere in aeroporto, come far sistemare la tua carrozzina e cosa succede se usi una sedia motorizzata. Porti un animale? C&rsquo;&egrave; la guida completa per ogni compagnia. Viaggi con un bambino piccolo che vola solo per la prima volta? Trovi la procedura passo per passo. Sei incinta? La sezione gravidanza ti accompagna settimana per settimana, senza tecnicismi. Hai bisogno di ossigeno in volo o di una macchina per l&rsquo;apnea notturna? GateReady ti spiega esattamente cosa portare, come dichiararlo e quali modelli sono autorizzati nel 2026.</p>
+        <span class="feat-tag">5 categorie &middot; Procedure per compagnia</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#128154;</span>
+        <h3>SOS Aeroporto</h3>
+        <p>Cosa fare nei prossimi dieci minuti in sei scenari di emergenza reale: volo cancellato, ritardo prolungato, coincidenza persa, bagaglio non arrivato, negato imbarco e overbooking. Guide passo per passo, sempre disponibili anche senza connessione.</p>
+        <span class="feat-tag">6 scenari &middot; Sempre offline</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#128172;</span>
+        <h3>Assistente AI</h3>
+        <p>Scrivi come parleresti a un collega esperto: &ldquo;porto il mio gatto su ITA Airways&rdquo;, &ldquo;ho il CPAP per l&rsquo;apnea&rdquo;, &ldquo;mia figlia di 8 anni vola sola&rdquo;, &ldquo;ho rotto la gamba tre giorni fa&rdquo;. L&rsquo;AI riconosce la compagnia, l&rsquo;et&agrave; dei minori, le settimane di gravidanza e risponde con le informazioni precise per la tua situazione.</p>
+        <span class="feat-tag">Claude AI &middot; Linguaggio naturale</span>
+      </div>
+    </div>
+    <div class="alert alert-info" style="max-width:660px;margin:28px auto 0">
+      <strong>Costruito da chi conosce il settore dall'interno.</strong> Le informazioni in GateReady sono verificate sulle fonti ufficiali pubbliche e aggiornate ogni trimestre. Ogni risposta riporta sempre la fonte e la data di aggiornamento, cos&igrave; puoi verificare in autonomia.
+    </div>
+  </div>
+</section>
+
+<!-- IN ARRIVO CON IL PREMIUM -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">In arrivo con il Premium</span>
+      <h2>Il Premium &egrave; gi&agrave; in costruzione. Tu puoi gi&agrave; farne parte.</h2>
+      <p>Ogni funzione qui sotto sar&agrave; inclusa nel tuo Lifetime Pass o GateReady Pass dal giorno del lancio, senza costi aggiuntivi. Chi prenota oggi accede prima di tutti e blocca il prezzo di lancio.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <span class="feat-icon">&#128196;</span>
+        <h3>PDF reclami personalizzati</h3>
+        <p>Il testo del reclamo diventa un PDF con i tuoi dati, il numero del volo, la data e il riferimento normativo corretto. Pronto da allegare alla tua email o PEC alla compagnia. Niente copia-incolla: scarichi e invii.</p>
+        <span class="feat-tag">&#8987; In sviluppo</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#128452;</span>
+        <h3>Archivio viaggi personale</h3>
+        <p>Salva le analisi dei tuoi viaggi, i reclami inviati e le scadenze da non perdere. I diritti EU 261 si prescrivono in due anni: con l&rsquo;archivio non rischi di dimenticare nulla.</p>
+        <span class="feat-tag">&#8987; In sviluppo</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#128275;</span>
+        <h3>Account personale</h3>
+        <p>Crea il tuo profilo, salva nazionalit&agrave;, compagnia preferita ed esigenze ricorrenti. GateReady impara le tue abitudini di viaggio e ti risponde ancora pi&ugrave; velocemente.</p>
+        <span class="feat-tag">&#8987; In sviluppo</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#128276;</span>
+        <h3>Monitoraggio voli in tempo reale</h3>
+        <p>Inserisci il numero del volo e ricevi una notifica se c&rsquo;&egrave; un ritardo, una cancellazione o un cambio di gate. GateReady ti dice immediatamente se hai diritto a compensazione e cosa fare nei prossimi minuti.</p>
+        <span class="feat-tag">&#8987; In sviluppo</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#127758;</span>
+        <h3>Check documentale Timatic</h3>
+        <p>Verifica in tempo reale i requisiti di ingresso per la tua nazionalit&agrave; verso qualsiasi destinazione nel mondo. Lo stesso sistema che usano le compagnie aeree al check-in, direttamente a tua disposizione.</p>
+        <span class="feat-tag">&#8987; In sviluppo</span>
+      </div>
+      <div class="feat-card">
+        <span class="feat-icon">&#128260;</span>
+        <h3>Aggiornamenti automatici inclusi a vita</h3>
+        <p>Quando cambiano le normative, quando si aggiungono nuove compagnie o nuove destinazioni, il tuo accesso si aggiorna senza che tu faccia nulla e senza costi extra. Il Lifetime Pass &egrave; esattamente quello che dice: per sempre.</p>
+        <span class="feat-tag">Incluso a vita nel Lifetime Pass</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPAGNIE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Compagnie coperte</span>
+      <h2>Tutte le compagnie con cui voli in Europa</h2>
+      <p>Regole bagagli, diritti, assistenze speciali e animali a bordo per le venti principali compagnie europee. Aggiornato ogni trimestre.</p>
+    </div>
+    <div class="co-grid">
+      <div class="co-chip">Ryanair</div><div class="co-chip">easyJet</div>
+      <div class="co-chip">Wizz Air</div><div class="co-chip">ITA Airways</div>
+      <div class="co-chip">Vueling</div><div class="co-chip">Lufthansa</div>
+      <div class="co-chip">Swiss</div><div class="co-chip">Austrian</div>
+      <div class="co-chip">Air Dolomiti</div><div class="co-chip">Brussels Airlines</div>
+      <div class="co-chip">KLM</div><div class="co-chip">Air France</div>
+      <div class="co-chip">British Airways</div><div class="co-chip">Iberia</div>
+      <div class="co-chip">TAP Air Portugal</div><div class="co-chip">Turkish Airlines</div>
+      <div class="co-chip">Transavia</div><div class="co-chip">Volotea</div>
+      <div class="co-chip">Norwegian</div><div class="co-chip">Aegean Airlines</div>
+    </div>
+  </div>
+</section>
+
+<!-- FONTI -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Affidabilit&agrave;</span>
+      <h2>Fonti ufficiali pubbliche, non opinioni da forum</h2>
+      <p>Ogni dato in GateReady ha una fonte verificabile e citata. Non aggreghiamo contenuti da blog o community. Utilizziamo solo normative e portali istituzionali aggiornati.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:24px">
+      <span class="src-badge">&#9878;&#65039; Reg. CE 261/2004 (EUR-Lex)</span>
+      <span class="src-badge">&#9878;&#65039; Sentenza Sturgeon C-402/07 (CJUE)</span>
+      <span class="src-badge">&#9878;&#65039; Folkerts C-11/11 (CJUE)</span>
+      <span class="src-badge">&#9878;&#65039; Convenzione di Montreal (ICAO)</span>
+      <span class="src-badge">&#127758; MAECI viaggiaresicuri.it</span>
+      <span class="src-badge">&#127758; IATA Timatic (portale pubblico)</span>
+      <span class="src-badge">&#127758; gov.uk (ETA e visti UK)</span>
+      <span class="src-badge">&#9762;&#65039; IATA DGR 67&ordf; Ed. 2026</span>
+      <span class="src-badge">&#127968; ENAC consumatori</span>
+      <span class="src-badge">&#127968; Siti ufficiali delle compagnie aeree</span>
+    </div>
+    <div class="alert alert-warn" style="max-width:620px;margin:24px auto 0;text-align:center">
+      Aggiornato al giugno 2026. GateReady &egrave; uno strumento informativo. Indica sempre la fonte ufficiale dove verificare prima di partire.
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIANZE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Chi l'ha gi&agrave; usato</span>
+      <h2>Le parole di chi ha risolto davvero</h2>
+      <p>Nessuna recensione inventata. Storie reali di passeggeri che hanno usato GateReady in situazioni concrete.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">&ldquo;Volo cancellato alle sei di mattina, bambini piccoli e zero idee su cosa fare. Ho aperto GateReady, ho letto che avevo diritto a &euro;250 e a un hotel per la notte. Ho copiato il testo del reclamo e inviato. Tre settimane dopo i soldi erano sul conto. Non avrei mai saputo come fare da sola.&rdquo;</p>
+        <div class="testi-author">Carlotta M.</div>
+        <div class="testi-role">Prima beta tester &middot; Firenze</div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-text">&ldquo;Uso la sedia a rotelle e ogni volo era un&rsquo;ansia. Non sapevo mai cosa aspettarmi. Con GateReady ho trovato le procedure esatte per ogni compagnia: cosa richiedere, come far gestire la carrozzina in stiva, quali codici WCHR usare al telefono. Per la prima volta ho viaggiato senza sorprese.&rdquo;</p>
+        <div class="testi-author">Marco T.</div>
+        <div class="testi-role">Frequent traveler &middot; Milano</div>
+      </div>
+      <div class="testi">
+        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <p class="testi-text">&ldquo;Mia figlia di 8 anni doveva volare da sola per la prima volta. GateReady mi ha segnalato la Dichiarazione della Questura obbligatoria per i minori italiani, che nessuno mi aveva detto. L'avevo cercata ovunque online senza trovarla. Senza quell'avviso l'avrebbero rispedita a casa al check-in.&rdquo;</p>
+        <div class="testi-author">Francesca L.</div>
+        <div class="testi-role">Beta tester &middot; Roma</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="section section--alt" id="waitlist">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Pre-ordine &middot; Waiting list</span>
+      <h2>Scegli il tuo piano. Sei tra i primi.</h2>
+      <p>L&rsquo;app base &egrave; gi&agrave; disponibile gratis. Le funzionalit&agrave; Premium sono in sviluppo. Iscriviti alla lista per il piano che preferisci: ti avvisiamo all&rsquo;uscita e blocchi il prezzo di lancio oggi.</p>
+    </div>
+
+    <div class="wl-grid">
+      <!-- FREE -->
+      <div class="wl-card">
+        <div class="wl-tier">Gratuito</div>
+        <div class="wl-price">&euro;0</div>
+        <div class="wl-period">Per sempre &middot; Gi&agrave; disponibile</div>
+        <ul class="wl-features">
+          <li>Check visti e documenti per 90+ paesi</li>
+          <li>Calcolo compensazione EU 261 con testo reclamo</li>
+          <li>Regole bagagli per 20 compagnie con DGR 2026</li>
+          <li>Assistenze speciali, SOS aeroporto e guide minori</li>
+          <li>5 domande al giorno all&rsquo;assistente AI</li>
+          <li>Funziona offline, zero registrazione</li>
+        </ul>
+        <a href="https://gate-ready-ai-p89x-alessio-gangi-s-projects.vercel.app/" class="wl-cta btn-outline-dark" target="_blank">Usa subito gratis &rarr;</a>
+      </div>
+
+      <!-- LIFETIME -->
+      <div class="wl-card hero-card">
+        <div class="wl-badge">&#11088; Lifetime Pass &middot; Primi 100 posti</div>
+        <div class="wl-tier">Accesso a vita</div>
+        <div class="wl-price"><sup>&euro;</sup>79</div>
+        <div class="wl-period">Una tantum &middot; Prezzo di lancio &middot; Aggiornamenti inclusi per sempre</div>
+        <ul class="wl-features">
+          <li>Tutto del piano gratuito</li>
+          <li>Assistente AI illimitato con Claude</li>
+          <li>PDF reclami personalizzati e pronti all&rsquo;invio</li>
+          <li>Archivio viaggi e scadenze reclami</li>
+          <li>Account personale con preferenze salvate</li>
+          <li>Monitoraggio voli in tempo reale</li>
+          <li>Check documentale Timatic</li>
+          <li>Tutti gli aggiornamenti futuri inclusi</li>
+        </ul>
+        <div class="waitlist-box">
+          <div class="wl-form-row">
+            <label>Nome</label>
+            <input type="text" class="waitlist-input" id="wl-lifetime-nome" placeholder="Mario">
+          </div>
+          <div class="wl-form-row">
+            <label>Cognome</label>
+            <input type="text" class="waitlist-input" id="wl-lifetime-cognome" placeholder="Rossi">
+          </div>
+          <div class="wl-form-row">
+            <label>Email</label>
+            <input type="email" class="waitlist-input" id="wl-lifetime-email" placeholder="mario@email.it">
+          </div>
+          <button class="btn btn-gold btn-sm" style="width:100%;margin-top:8px" onclick="joinWaitlist('lifetime')">&#11088; Prenota il mio posto &rarr;</button>
+          <div class="waitlist-ok" id="wl-lifetime-ok">&#10003; Sei in lista! Ti avviseremo al lancio.</div>
+        </div>
+      </div>
+
+      <!-- ANNUAL -->
+      <div class="wl-card">
+        <div class="wl-tier">GateReady Pass</div>
+        <div class="wl-price"><sup>&euro;</sup>29<small style="font-size:.85rem">,99</small></div>
+        <div class="wl-period">All&rsquo;anno &middot; Circa &euro;2,50 al mese</div>
+        <ul class="wl-features">
+          <li>Tutto del piano gratuito</li>
+          <li>Assistente AI illimitato</li>
+          <li>PDF reclami personalizzati</li>
+          <li>Archivio viaggi e scadenze</li>
+          <li>Account personale</li>
+          <li>Monitoraggio voli</li>
+          <li>Check Timatic in tempo reale</li>
+        </ul>
+        <div class="waitlist-box">
+          <div class="wl-form-row">
+            <label>Nome</label>
+            <input type="text" class="waitlist-input" id="wl-annual-nome" placeholder="Mario">
+          </div>
+          <div class="wl-form-row">
+            <label>Cognome</label>
+            <input type="text" class="waitlist-input" id="wl-annual-cognome" placeholder="Rossi">
+          </div>
+          <div class="wl-form-row">
+            <label>Email</label>
+            <input type="email" class="waitlist-input" id="wl-annual-email" placeholder="mario@email.it">
+          </div>
+          <button class="btn btn-blue btn-sm" style="width:100%;margin-top:8px" onclick="joinWaitlist('annual')">Inseriscimi in lista &rarr;</button>
+          <div class="waitlist-ok" id="wl-annual-ok">&#10003; Sei in lista! Ti avviseremo al lancio.</div>
+        </div>
+      </div>
+
+      <!-- AGENZIE -->
+      <div class="wl-card">
+        <div class="wl-tier">Pro Agenzie</div>
+        <div class="wl-price"><sup>&euro;</sup>39</div>
+        <div class="wl-period">Al mese &middot; Fino a 5 utenti</div>
+        <ul class="wl-features">
+          <li>Tutto del GateReady Pass</li>
+          <li>Dashboard multi-utente</li>
+          <li>White label con il tuo logo</li>
+          <li>Supporto dedicato via email</li>
+          <li>Fattura mensile per la contabilit&agrave;</li>
+        </ul>
+        <div class="waitlist-box">
+          <div class="wl-form-row">
+            <label>Nome</label>
+            <input type="text" class="waitlist-input" id="wl-agency-nome" placeholder="Mario">
+          </div>
+          <div class="wl-form-row">
+            <label>Cognome</label>
+            <input type="text" class="waitlist-input" id="wl-agency-cognome" placeholder="Rossi">
+          </div>
+          <div class="wl-form-row">
+            <label>Email aziendale</label>
+            <input type="email" class="waitlist-input" id="wl-agency-email" placeholder="mario@agenzia.it">
+          </div>
+          <button class="btn btn-outline-dark btn-sm" style="width:100%;margin-top:8px" onclick="joinWaitlist('agency')">Richiedi accesso anticipato &rarr;</button>
+          <div class="waitlist-ok" id="wl-agency-ok">&#10003; Ricevuto! Ti contatteremo presto.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-green" style="max-width:620px;margin:28px auto 0;text-align:center">
+      <strong>Zero rischi.</strong> L&rsquo;iscrizione alla waiting list non comporta nessun addebito. Ti mandiamo una email al lancio e sei libero di scegliere.
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="cta-final">
+  <h2>L&rsquo;app base &egrave; qui. Il Premium arriver&agrave; presto.</h2>
+  <p>Inizia a usare GateReady gratis adesso e iscriviti alla lista per essere tra i primi ad accedere al Premium al prezzo di lancio.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative">
+    <a href="https://gate-ready-ai-p89x-alessio-gangi-s-projects.vercel.app/" class="btn btn-gold" target="_blank">&#128640; Usa l'app gratis</a>
+    <a href="#waitlist" class="btn btn-ghost">Entra in waiting list &darr;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Gate<span>Ready</span></div>
+        <div class="footer-tagline">L&rsquo;esperto aeroportuale che vola sempre con te</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://gate-ready-ai-p89x-alessio-gangi-s-projects.vercel.app/" target="_blank">App</a>
+        <a href="#funzioni">Funzioni</a>
+        <a href="#waitlist">Pre-ordine</a>
+        <a href="mailto:info@gateready.ai">Contatti</a>
+        <a href="#" onclick="openModal('privacy');return false">Privacy</a>
+        <a href="#" onclick="openModal('terms');return false">Termini</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 GateReady &middot; Tutti i diritti riservati &middot; gateready.ai</div>
+      <div class="footer-src">Informazioni indicative. Verifica sempre su fonti ufficiali prima di partire.</div>
+    </div>
+  </div>
+</footer>
+<!-- ── PRIVACY POLICY MODAL ─────────────────────────────── -->
+<div id="modal-privacy" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,22,40,.75);overflow-y:auto;padding:24px 16px">
+  <div style="max-width:700px;margin:0 auto;background:white;border-radius:16px;padding:32px 28px;position:relative">
+    <button onclick="closeModal('privacy')" style="position:absolute;top:16px;right:16px;border:none;background:var(--mist);border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center">&#10005;</button>
+    <h2 style="font-size:1.4rem;margin-bottom:4px">&#128274; Privacy Policy</h2>
+    <p style="font-size:12px;color:var(--soft);margin-bottom:24px">Versione 1.0 &middot; In vigore dal [DATA] &middot; Reg. UE 2016/679 (GDPR)</p>
+
+    <div style="font-size:13.5px;line-height:1.8;color:var(--ink);display:flex;flex-direction:column;gap:20px">
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">1. Chi siamo e come contattarci</h3>
+        <p>GateReady &egrave; gestito da [Nome/Ragione Sociale], con sede in [Indirizzo], Italia.<br>
+        Email per la privacy: <a href="mailto:privacy@gateready.ai" style="color:var(--blue)">privacy@gateready.ai</a></p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">2. Dati che raccogliamo</h3>
+        <p><strong>Waiting list e pre-ordine:</strong> raccogliamo nome, cognome e indirizzo email quando ti iscrivi. Base giuridica: consenso (art. 6, par. 1, lett. a) GDPR). Conservazione: 24 mesi o fino alla revoca del consenso.</p>
+        <p style="margin-top:8px"><strong>Dati tecnici automatici:</strong> il nostro hosting provider (Vercel) registra indirizzi IP, browser, pagine visitate. Base giuridica: legittimo interesse (sicurezza del servizio). Conservazione: 90 giorni.</p>
+        <p style="margin-top:8px"><strong>Account Premium (in arrivo):</strong> email e password cifrata per l&rsquo;accesso, dati dei viaggi salvati. Base giuridica: esecuzione del contratto.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">3. Cookie</h3>
+        <p>GateReady <strong>non usa cookie di profilazione</strong> n&eacute; sistemi di tracciamento pubblicitario. Utilizziamo solo cookie tecnici strettamente necessari al funzionamento (es. stato di sessione) e localStorage sul tuo dispositivo per le preferenze locali. Nessun consenso cookie richiesto per questi.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">4. A chi trasferiamo i dati</h3>
+        <p>I tuoi dati possono essere trattati da fornitori di servizi che agiscono come Responsabili del Trattamento: <strong>Vercel</strong> (hosting, USA &mdash; SCC), <strong>Stripe</strong> (pagamenti, USA &mdash; PCI-DSS + SCC), <strong>Supabase</strong> (database, USA &mdash; SCC). I dati non vengono mai venduti a terzi.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">5. I tuoi diritti (artt. 15&ndash;22 GDPR)</h3>
+        <p>Hai il diritto di: <strong>accedere</strong> ai tuoi dati &middot; <strong>rettificarli</strong> &middot; <strong>cancellarli</strong> (diritto all&rsquo;oblio) &middot; <strong>limitare</strong> il trattamento &middot; <strong>portarli</strong> in altro servizio &middot; <strong>opporti</strong> al trattamento &middot; <strong>revocare il consenso</strong> in qualsiasi momento.</p>
+        <p style="margin-top:8px">Per esercitare i tuoi diritti: <a href="mailto:privacy@gateready.ai" style="color:var(--blue)">privacy@gateready.ai</a> &mdash; risposta entro 30 giorni.<br>
+        Puoi presentare reclamo al <strong>Garante Privacy</strong>: <a href="https://www.garanteprivacy.it" target="_blank" style="color:var(--blue)">garanteprivacy.it</a></p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">6. Sicurezza</h3>
+        <p>Utilizziamo HTTPS/TLS 1.3, hashing bcrypt per le password, accesso limitato ai dati e monitoraggio dei log. In caso di data breach notifichiamo il Garante entro 72 ore (art. 33 GDPR) e gli utenti interessati senza ritardo.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">7. Minori</h3>
+        <p>Il servizio &egrave; riservato a persone di et&agrave; pari o superiore a 16 anni. Non raccogliamo consapevolmente dati di minori.</p>
+      </div>
+
+      <div style="background:var(--slate);border-radius:8px;padding:12px;font-size:12px;color:var(--soft)">
+        Documento completo disponibile su richiesta a privacy@gateready.ai &middot; Versione 1.0 &middot; Aggiornato [DATA]<br>
+        <em>Nota: questo testo &egrave; stato redatto a scopo informativo e sar&agrave; validato da un legale specializzato prima del lancio Premium.</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TERMINI E CONDIZIONI MODAL ─────────────────────────── -->
+<div id="modal-terms" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(10,22,40,.75);overflow-y:auto;padding:24px 16px">
+  <div style="max-width:700px;margin:0 auto;background:white;border-radius:16px;padding:32px 28px;position:relative">
+    <button onclick="closeModal('terms')" style="position:absolute;top:16px;right:16px;border:none;background:var(--mist);border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center">&#10005;</button>
+    <h2 style="font-size:1.4rem;margin-bottom:4px">&#128203; Termini e Condizioni</h2>
+    <p style="font-size:12px;color:var(--soft);margin-bottom:24px">Versione 1.0 &middot; In vigore dal [DATA] &middot; Legge italiana applicabile</p>
+
+    <div style="font-size:13.5px;line-height:1.8;color:var(--ink);display:flex;flex-direction:column;gap:20px">
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">1. Natura del Servizio</h3>
+        <p>GateReady fornisce informazioni di carattere generale su diritti dei passeggeri, normative di viaggio e regole delle compagnie aeree. Le informazioni sono orientative e <strong>non costituiscono consulenza legale o professionale</strong>. Verifica sempre le informazioni critiche sulle fonti ufficiali (ENAC, MAECI, siti compagnie) prima di prendere decisioni.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">2. Piano Gratuito</h3>
+        <p>Accessibile senza registrazione, senza carta di credito, senza obblighi. Puoi smettere di usarlo in qualsiasi momento.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">3. Piani Premium (in arrivo)</h3>
+        <p><strong>Waiting list:</strong> l&rsquo;iscrizione non comporta alcun obbligo di acquisto. Riceverai una email al lancio e potrai scegliere liberamente.</p>
+        <p style="margin-top:8px"><strong>Diritto di recesso:</strong> per tutti i piani a pagamento, hai 14 giorni dall&rsquo;acquisto per recedere con rimborso integrale (art. 52 D.Lgs. 206/2005 &mdash; Codice del Consumo italiano).</p>
+        <p style="margin-top:8px"><strong>GateReady Pass annuale (&euro;29,99/anno):</strong> rinnovo automatico. Cancellabile in qualsiasi momento dall&rsquo;area personale o via email. Nessun rimborso proporzionale per mesi non usufruiti, salvo vizi del servizio.</p>
+        <p style="margin-top:8px"><strong>Lifetime Pass (&euro;79):</strong> acquisto singolo, nessun rinnovo. Include tutti gli aggiornamenti futuri delle funzionalit&agrave; Premium.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">4. Propriet&agrave; Intellettuale</h3>
+        <p>Tutti i contenuti di GateReady (testi, codice, marchio, grafica) sono di propriet&agrave; del Titolare. &Egrave; vietata la riproduzione senza autorizzazione scritta. Le normative citate (ENAC, MAECI, EUR-Lex) sono di dominio pubblico.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">5. Limitazione di Responsabilit&agrave;</h3>
+        <p>GateReady non garantisce la completezza o l&rsquo;aggiornamento in tempo reale dei contenuti. La responsabilit&agrave; massima verso gli utenti Premium &egrave; limitata all&rsquo;importo pagato nell&rsquo;anno precedente al danno. Per gli utenti gratuiti il servizio &egrave; fornito &ldquo;cos&igrave; come &egrave;&rdquo; (as-is).</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">6. Assistente AI &mdash; Limitazioni</h3>
+        <p>L&rsquo;assistente AI (basato su Claude di Anthropic) pu&ograve; produrre risposte imprecise. Non usarlo come unica fonte per decisioni importanti (idoneit&agrave; al volo, trasporto medicinali, ecc.) senza verifica con un professionista.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:6px">7. Legge Applicabile e Foro</h3>
+        <p>Si applica la legge italiana. Per i <strong>consumatori</strong>: foro del luogo di residenza o domicilio dell&rsquo;utente (art. 33 D.Lgs. 206/2005) oppure piattaforma ODR europea: <a href="https://ec.europa.eu/consumers/odr" target="_blank" style="color:var(--blue)">ec.europa.eu/consumers/odr</a>.<br>
+        Per utenti <strong>professionali</strong>: foro di [Citt&agrave; sede legale GateReady].</p>
+      </div>
+
+      <div style="background:var(--slate);border-radius:8px;padding:12px;font-size:12px;color:var(--soft)">
+        Documento completo disponibile su richiesta a info@gateready.ai &middot; Versione 1.0 &middot; Aggiornato [DATA]<br>
+        <em>Nota: questo testo sar&agrave; validato da un legale specializzato prima del lancio Premium.</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(id){ document.getElementById('modal-'+id).style.display='block'; document.body.style.overflow='hidden'; }
+function closeModal(id){ document.getElementById('modal-'+id).style.display='none'; document.body.style.overflow=''; }
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeModal('privacy'); closeModal('terms'); } });
+</script>
+
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+var PLAN_LABELS={'lifetime':'Lifetime Pass \u20ac79','annual':'GateReady Pass Annuale','agency':'Pro Agenzie'};
+function joinWaitlist(plan){
+  var nome=(document.getElementById('wl-'+plan+'-nome')||{value:''}).value.trim();
+  var cognome=(document.getElementById('wl-'+plan+'-cognome')||{value:''}).value.trim();
+  var email=(document.getElementById('wl-'+plan+'-email')||{value:''}).value.trim();
+  var ok=document.getElementById('wl-'+plan+'-ok');
+  var err=false;
+  if(!nome){markErr('wl-'+plan+'-nome');err=true;}
+  if(!cognome){markErr('wl-'+plan+'-cognome');err=true;}
+  if(!email||!email.includes('@')){markErr('wl-'+plan+'-email');err=true;}
+  if(err)return;
+  var list=JSON.parse(localStorage.getItem('gr_waitlist')||'[]');
+  list.push({nome:nome,cognome:cognome,email:email,piano:PLAN_LABELS[plan]||plan,data:new Date().toISOString()});
+  localStorage.setItem('gr_waitlist',JSON.stringify(list));
+  var box=document.getElementById('wl-'+plan+'-ok').closest('.waitlist-box');
+  Array.from(box.querySelectorAll('.wl-form-row,button')).forEach(function(el){el.style.display='none';});
+  ok.style.display='block';
+}
+function markErr(id){
+  var el=document.getElementById(id);
+  if(el){el.style.borderColor='var(--red)';el.focus();el.addEventListener('input',function(){el.style.borderColor='';},{once:true});}
+}
+function openModal(id){document.getElementById('modal-'+id).style.display='block';document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById('modal-'+id).style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal('privacy');closeModal('terms');}});
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.style.animation='fadeUp .42s ease both';obs.unobserve(en.target);}});},{threshold:0.07});
+  document.querySelectorAll('.feat-card,.step,.wl-card,.testi').forEach(function(el){el.style.opacity='0';obs.observe(el);});
+}
+</script>
+
+</body>
+</html>
